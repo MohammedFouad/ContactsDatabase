@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,10 +16,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView displayContacts = (TextView)findViewById(R.id.displayContacts);
+
         ListView contactsList = (ListView)findViewById(R.id.contactsList);
 
         DatabaseHandler db = new DatabaseHandler(this);
+
+        ArrayList<Contact> arrayOfContacts = new ArrayList<>();
+
+        ContactAdapter contactAdapter = new ContactAdapter(this,arrayOfContacts);
 
         /**
          * CRUD Operations
@@ -33,16 +38,18 @@ public class MainActivity extends AppCompatActivity {
         db.addContact(new Contact("Hany","01425466"));
         db.addContact(new Contact("Eman","01142578"));
 
+        contactAdapter.add(db.getContact(0));
+        contactsList.setAdapter(contactAdapter);
 
         //Reading
-        Log.d("Reading: ", "Reading all contacts..");
-        List<Contact> contacts = db.getAllContacts();
-
+      //  Log.d("Reading: ", "Reading all contacts..");
+       // List<Contact> contacts = db.getAllContacts();
+/*
         for (Contact cn : contacts){
             String log = "Id: "+ cn.get_id()+" , Name: " + cn.get_name() + " ,Phone: " + cn.get_phone_number();
-displayContacts.setText(cn._name);
+
             Log.d("Name: ", log);
         }
-
+**/
     }
 }

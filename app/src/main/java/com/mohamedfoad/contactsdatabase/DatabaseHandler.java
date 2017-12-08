@@ -45,8 +45,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
-                + KEY_ID + "INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_PH_NO + "TEXT" + ")";
+                + KEY_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NAME + " TEXT,"
+                + KEY_PH_NO + "TEXT );";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
 
@@ -84,9 +84,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     Contact getContact(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_CONTACTS, new String[]{
-           KEY_ID,KEY_NAME,KEY_PH_NO}, KEY_ID + "=?",
-                new String[]{String.valueOf(id)},null,null,null,null);
+        Cursor cursor = db.query(
+                TABLE_CONTACTS,
+                new String[]{
+           KEY_ID,KEY_NAME,KEY_PH_NO},
+                KEY_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null);
         if(cursor != null)
             cursor.moveToFirst();
 
