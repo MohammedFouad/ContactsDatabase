@@ -38,18 +38,19 @@ public class MainActivity extends AppCompatActivity {
         db.addContact(new Contact("Hany","01425466"));
         db.addContact(new Contact("Eman","01142578"));
 
-        contactAdapter.add(db.getContact(0));
+      //  contactAdapter.add(db.getContact(0));
         contactsList.setAdapter(contactAdapter);
 
-        //Reading
-      //  Log.d("Reading: ", "Reading all contacts..");
-       // List<Contact> contacts = db.getAllContacts();
-/*
+
+
+      //Reading
+        Log.d("Reading: ", "Reading all contacts..");
+        List<Contact> contacts = db.getAllContacts();
+
         for (Contact cn : contacts){
             String log = "Id: "+ cn.get_id()+" , Name: " + cn.get_name() + " ,Phone: " + cn.get_phone_number();
-
             Log.d("Name: ", log);
         }
-**/
+
     }
 }

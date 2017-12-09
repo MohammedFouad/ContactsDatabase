@@ -22,7 +22,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // All static variables
 
     //Database version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     //Database Name
     private static final String DATABASE_NAME = "contactsManager";
@@ -45,7 +45,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
-                + KEY_ID + "INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NAME + " TEXT,"
+                + KEY_ID + "INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
                 + KEY_PH_NO + "TEXT );";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
@@ -81,14 +81,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //getting single contact
-    Contact getContact(int id){
+    public Contact getContact(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(
                 TABLE_CONTACTS,
                 new String[]{
            KEY_ID,KEY_NAME,KEY_PH_NO},
-                KEY_ID + "=?",
+                KEY_ID + "=? ",
                 new String[]{String.valueOf(id)},
                 null,
                 null,
