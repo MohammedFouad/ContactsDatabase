@@ -43,12 +43,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_CONTACTS + "("
-                + KEY_ID + "INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_PH_NO + "TEXT );";
+                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
+                + KEY_PH_NO + " TEXT" + ")";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
+
 
     //Upgrading database
     @Override
@@ -154,7 +154,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String countQuery = "SELECT  * FROM " + TABLE_CONTACTS;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
-        cursor.close();
+       // cursor.close();
 
         // return count
         return cursor.getCount();

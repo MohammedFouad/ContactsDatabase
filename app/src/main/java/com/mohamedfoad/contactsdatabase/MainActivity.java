@@ -35,12 +35,12 @@ public class MainActivity extends AppCompatActivity {
         db.addContact(new Contact("Mohamed","01003260023"));
         db.addContact(new Contact("Ahmed","011585"));
         db.addContact(new Contact("Ali","012586456"));
-        db.addContact(new Contact("Hany","01425466"));
-        db.addContact(new Contact("Eman","01142578"));
 
       //  contactAdapter.add(db.getContact(0));
         contactsList.setAdapter(contactAdapter);
 
+        TextView displayData = (TextView)findViewById(R.id.displayData);
+    //    displayData.setText(db.getContactsCount());
 
 
       //Reading
